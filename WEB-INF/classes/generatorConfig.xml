@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 引入配置文件 -->
+    <properties resource="dbconfig.properties"/>
+    
+    <!-- 数据库驱动包位置 -->
+    <classPathEntry location="${classPath}" />
+    
+    <!-- 一个数据库一个context -->
+    <context id="my" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false" />
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="${driverClassName}"
+            connectionURL="${jdbc_url}"
+            userId="${jdbc_username}" password="${jdbc_password}" />
+            
+            <!-- 类型转换 
+            <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false"/> 
+            </javaTypeResolver>  
+            -->  
+
+        <!-- 生成实体类的包名和位置-->
+        <javaModelGenerator targetPackage="me.lipu.entity"
+            targetProject="${project}">
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+            <property name="enableSubPackages" value="true" />
+            <!-- 是否针对string类型的字段在set的时候进行trim调用 --> 
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 生成的SQL映射文件包名和位置-->
+        <sqlMapGenerator targetPackage="me.lipu.mapping"
+            targetProject="${project}">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator targetPackage="me.lipu.dao"
+            targetProject="${project}"
+            type="XMLMAPPER">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+        <table tableName="_User" domainObjectName="User"
+            enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+        
+        <table tableName="_Notebook" domainObjectName="Notebook"
+            enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+        
+        <table tableName="_Note" domainObjectName="Note"
+            enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+
+    </context>
+</generatorConfiguration>

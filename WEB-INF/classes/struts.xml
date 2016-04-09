@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <package name="mynote" extends="struts-default">
+        <action name="login" class="me.lipu.action.LoginAction">
+            <result name="default">/login.jsp</result>
+            <result name="success" type="chain">notebook</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        
+        <!-- notebook相关Action -->
+        <!-- 返回界面，包含用户的所有notebook信息 -->
+        <action name="notebook" class="me.lipu.action.NotebookAction">
+            <result>/mnote.jsp</result>
+        </action>
+        
+        <action name="deleteNotebook" class="me.lipu.action.NotebookAction" method="delete">
+        </action>
+        
+        <action name="addNotebook" class="me.lipu.action.NotebookAction" method="add">
+        </action>
+        
+        <action name="updateNotebook" class="me.lipu.action.NotebookAction" method="update">
+        </action>
+        
+        <!-- note相关Action -->
+        
+        <!-- 获得特定notebook的全部note -->
+        <action name="note" class="me.lipu.action.NoteAction">
+        </action>
+
+        <action name="getNote" class="me.lipu.action.NoteAction" method="get">
+        </action>
+        
+        <action name="setNote" class="me.lipu.action.NoteAction" method="set">
+        </action>
+        
+        <action name="addNote" class="me.lipu.action.NoteAction" method="add">
+        </action>
+        
+        <action name="deleteNote" class="me.lipu.action.NoteAction" method="delete">
+        </action>
+        
+        <action name="deleteNotes" class="me.lipu.action.NoteAction" method="deleteNotes">
+            <result type="chain">deleteNotebook</result>
+        </action>
+        
+        
+    </package>
+</struts>

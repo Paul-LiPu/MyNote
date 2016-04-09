@@ -1,0 +1,32 @@
+DROP DATABASE IF EXISTS mynote;
+Create DATABASE mynote;
+USE mynote;
+
+DROP TABLE IF EXISTS _User;
+CREATE TABLE _User (
+  id char(32) NOT NULL,
+  password varchar(32) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS _Notebook;
+CREATE TABLE _Notebook (
+  id INT AUTO_INCREMENT NOT NULL,
+  title TINYTEXT NOT NULL,
+  user_id varchar(32) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES _User(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS _Note;
+CREATE TABLE _Note (
+  id INT AUTO_INCREMENT NOT NULL,
+  title TINYTEXT NOT NULL,
+  content MEDIUMTEXT NOT NULL,
+  notebook_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (notebook_id) REFERENCES _Notebook(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
