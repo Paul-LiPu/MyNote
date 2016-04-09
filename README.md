@@ -1,4 +1,3 @@
-# hello-world
-just for studying
+# MyNote
 
-Paul Li here, a new coder for java web. 
+This is a WebApp for Tomcat7+, similar to evernote. 
